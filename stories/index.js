@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from 'react'
 
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
@@ -14,6 +14,7 @@ import Appointment from "components/Appointment/index";
 import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
+import Form from "components/Appointment/Form";
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -153,4 +154,21 @@ storiesOf("Button", module)
     <Empty onAdd= {action("onAdd")} /> ))
   .add("Show", () => (
       <Show student="Lydia Miller-Jones"  interviewer = {interviewer} onEdit={action("onEdit")}  onDelete={action("onDelete")} /> ))
-  ;
+  .add("Edit", () => <Form student="KaviRam" interviewers={interviewers} interviewer="4" onSave={action("onSave")} onCancel={action("onCancel")} />)
+  .add("Create", () => <Form interviewers={interviewers} onSave={action("onSave")} onCancel={action("onCancel")} />)
+  .add("Appointment Empty", () => (
+    <Fragment>
+      <Appointment id={1} time="4pm" />
+      <Appointment time="5pm" />
+    </Fragment>
+  ))
+  .add("Appointment Booked", () => (
+    <Fragment>
+      <Appointment
+        id={1}
+        time="4pm"
+        interview={{ student: "Lydia Miller-Jones", interviewer }}
+      />
+      <Appointment time="5pm" />
+    </Fragment>
+  ));
