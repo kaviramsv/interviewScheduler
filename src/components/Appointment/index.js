@@ -2,6 +2,7 @@ import React from "react";
 import Header from "components/Appointment/Header.js";
 import Show from "components/Appointment/Show.js";
 import Empty from "components/Appointment/Empty.js";
+import { getInterviewersForDay } from "helpers/selectors";
 
 import "../Appointment/styles.scss";
 import useVisualMode from "hooks/useVisualMode";
@@ -29,7 +30,7 @@ export default function Appointment(props) {
        {mode === CREATE && (
       <Form  
       onCancel={back}
-      interviewers={[]}
+      interviewers={props.interviewers}
       interviewer={props.interviewer}
      
     

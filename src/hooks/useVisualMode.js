@@ -9,15 +9,11 @@ const useVisualMode = (initial) => {
   const transition = (mode, replace = false) => {
 
     if (replace === true) {
-
       setMode(mode);
-
     }
     if (!replace) {
-
       setMode(mode);
       setHistory([...history, mode]);
-
     }
   };
 
@@ -31,7 +27,6 @@ const useVisualMode = (initial) => {
       setHistory(history_copy);
       setMode(history_copy[history_copy.length - 1]);
     }
-
   };
 
   return { mode, transition, back };
