@@ -66,6 +66,6 @@ export function getInterviewersForDay(state, day) {
 
    const spots_available=empty_appts_for_day.length;
 
-   return spots_available;
+   return  spots_available;
 
  }

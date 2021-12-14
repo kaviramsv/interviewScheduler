@@ -31,8 +31,14 @@ const ERROR_ON_DELETE = "Cannot Delete";
       student: name,
       interviewer
     };
-    transition(SAVING);
+    console.log(interview.student);
+    console.log(interview.interviewer);
 
+    if(interview.student.length===0|| interview.interviewer===null)
+    { 
+      return transition(ERROR_ON_SAVE);      
+    }
+    transition(SAVING);
     props.bookInterview(props.id, interview)
     .then(() => {transition(SHOW)})
     .catch(() => transition(ERROR_ON_SAVE, true))

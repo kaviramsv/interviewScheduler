@@ -24,15 +24,28 @@ export default function useApplicationData(props) {
     
     
     const spots_remaining=getAvailableSpots(appointments,state.days,state.day);
-
-
+    console.log("in add",spots_remaining);
+    const day_id=state.days.findIndex(item=>item.name===state.day);
+    
+    console.log(day_id);
+    const day_obj = {
+      ...state.days[day_id],
+      spots: spots_remaining
+    }
+    console.log("day",day_obj);
+    const days = [
+      ...state.days,
+    ]
+    days[day_id] = day_obj;
+    console.log("days",days);
+    console.log("day_id",day_id);
     return axios.put(`/api/appointments/${id}`, appointment)
       .then(() => {
-        setState(prev => ({ ...prev, appointments }));
+        setState(prev => ({ ...prev, appointments,days }));
       })
     //setState({ ...state, appointments });
     // setState(prev => ({...prev, appointments}));
-    console.log(id, interview);
+    
   }
   function cancelInterview(id) {
     const appointment = {
@@ -45,8 +58,26 @@ export default function useApplicationData(props) {
     };
 
     
+
+    const spots_remaining=getAvailableSpots(appointments,state.days,state.day);
+    console.log("in add",spots_remaining);
+    const day_id=state.days.findIndex(item=>item.name===state.day);
+    
+    console.log(day_id);
+    const day_obj = {
+      ...state.days[day_id],
+      spots: spots_remaining
+    }
+    console.log("day",day_obj);
+    const days = [
+      ...state.days,
+    ]
+    days[day_id] = day_obj;
+    console.log("days",days);
+    console.log("day_id",day_id);
+    console.log("delete",spots_remaining);
     return axios.delete(`/api/appointments/${id}`)
-      .then(() => setState({ ...state, appointments }));
+      .then(() => setState({ ...state, appointments,days }));
 
 
   }
