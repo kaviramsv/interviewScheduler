@@ -53,3 +53,19 @@ export function getInterviewersForDay(state, day) {
    }
    return interviewers.length ? interviewers : [];
  }
+
+ export function getAvailableSpots(appointments,days,day) {
+
+   // console.log(appointments,days,day);
+
+   const find_day=days.filter(item=>item.name===day);
+ 
+   const find_appts_for_day = find_day[0].appointments;
+   
+   const empty_appts_for_day= find_appts_for_day.filter(apptId=>!appointments[apptId].interview);
+
+   const spots_available=empty_appts_for_day.length;
+
+   return spots_available;
+
+ }
