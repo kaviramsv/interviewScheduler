@@ -25,20 +25,22 @@ export default function useApplicationData(props) {
     
     const spots_remaining=getAvailableSpots(appointments,state.days,state.day);
     console.log("in add",spots_remaining);
+
     const day_id=state.days.findIndex(item=>item.name===state.day);
     
-    console.log(day_id);
+    // console.log(day_id);
     const day_obj = {
       ...state.days[day_id],
       spots: spots_remaining
     }
-    console.log("day",day_obj);
+    // console.log("day",day_obj);
     const days = [
       ...state.days,
     ]
     days[day_id] = day_obj;
-    console.log("days",days);
-    console.log("day_id",day_id);
+    // console.log("days",days);
+    // console.log("day_id",day_id);
+
     return axios.put(`/api/appointments/${id}`, appointment)
       .then(() => {
         setState(prev => ({ ...prev, appointments,days }));
@@ -55,9 +57,7 @@ export default function useApplicationData(props) {
     const appointments = {
       ...state.appointments,
       [id]: appointment
-    };
-
-    
+    };    
 
     const spots_remaining=getAvailableSpots(appointments,state.days,state.day);
     console.log("in add",spots_remaining);

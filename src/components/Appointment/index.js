@@ -34,10 +34,10 @@ const ERROR_ON_DELETE = "Cannot Delete";
     console.log(interview.student);
     console.log(interview.interviewer);
 
-    if(interview.student.length===0|| interview.interviewer===null)
-    { 
-      return transition(ERROR_ON_SAVE);      
-    }
+    // if(interview.student.length===0|| interview.interviewer===null)
+    // { 
+    //   return transition(ERROR_ON_SAVE);      
+    // }
     transition(SAVING);
     props.bookInterview(props.id, interview)
     .then(() => {transition(SHOW)})
@@ -86,7 +86,7 @@ const ERROR_ON_DELETE = "Cannot Delete";
        student={props.interview.student}
        onSave={save} 
        edit={true}
-      
+       name={props.interview.student}
       />
        )}
        {mode === CONFIRM && (
