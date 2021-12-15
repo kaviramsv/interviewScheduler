@@ -10,7 +10,6 @@ export function getAppointmentsForDay(state, day) {
       data.push(state.appointments[appt])
    }
    return data;
-
 }
 
 export function getInterview(state, interview) {
@@ -18,54 +17,35 @@ export function getInterview(state, interview) {
    if (!interview) {
       return null;
    }
-   const id = interview.interviewer;//incoming data
-   const student = interview.student;//incoming data
-   const details = state.interviewers[id];//need to fetch from interviewers
-
-   const new_obj = {};//construct new obj
+   const id = interview.interviewer;
+   const student = interview.student;
+   const details = state.interviewers[id];
+   const new_obj = {};
    new_obj['student'] = student;
-   new_obj['interviewer'] = details;
-   // console.log(new_obj);
+   new_obj['interviewer'] = details;  
    return new_obj;
 }
 
-//  i/p====>{ student: "Archie Cohen", interviewer: 2 }
-
-//  o/p====>{
-//         student: 'Archie Cohen',
-//         interviewer: {
-//           id: 2,
-//           name: 'Tori Malcolm',
-//           avatar: 'https://i.imgur.com/Nmx0Qxo.png'
-//         }
-//       }
-// 
-
 export function getInterviewersForDay(state, day) {
+
    const interviewers = [];
    const days = state.days.filter(item => item.name === day);
    const interviewer_array = days[0].interviewers;
    
    for (const interview in state.interviewers) {
-     if (interviewer_array.includes(state.interviewers[interview].id)) {
-       interviewers.push(state.interviewers[interview]);
-     }
+      if (interviewer_array.includes(state.interviewers[interview].id)) {
+         interviewers.push(state.interviewers[interview]);
+      }
    }
    return interviewers.length ? interviewers : [];
- }
+}
 
- export function getAvailableSpots(appointments,days,day) {
+export function getAvailableSpots(appointments,days,day) {
 
-   // console.log(appointments,days,day);
-
-   const find_day=days.filter(item=>item.name===day);
- 
-   const find_appts_for_day = find_day[0].appointments;
-   
+   const find_day=days.filter(item=>item.name===day); 
+   const find_appts_for_day = find_day[0].appointments;   
    const empty_appts_for_day= find_appts_for_day.filter(apptId=>!appointments[apptId].interview);
-
    const spots_available=empty_appts_for_day.length;
-
    return  spots_available;
 
- }
+}

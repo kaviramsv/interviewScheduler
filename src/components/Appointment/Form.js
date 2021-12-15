@@ -6,6 +6,7 @@ export default function Form(props) {
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
+
   const reset = function() {
     setName("");    
     setInterviewer(null);
@@ -15,6 +16,7 @@ export default function Form(props) {
     reset();
     props.onCancel();
   }
+
   function validate() {
     if (name === "") {
       setError("student name cannot be blank");
@@ -50,7 +52,6 @@ export default function Form(props) {
         <section className="appointment__actions">
           <Button danger onClick={cancel}>Cancel</Button>
           <Button confirm onClick={validate}>Save</Button>
-
         </section>
       </section>
     </main>
